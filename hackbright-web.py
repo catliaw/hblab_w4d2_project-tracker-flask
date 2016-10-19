@@ -19,6 +19,18 @@ def get_student():
                             github=github,
                             rows = rows)
 
+@app.route("/project")
+def find_project():
+    """ Show information about a project"""
+
+    title = request.args.get("title")
+    project_title, description, max_grade = hackbright.get_project_by_title(title)
+
+    return render_template("project_info.html",
+                            project_title=project_title,
+                            description=description,
+                            max_grade=max_grade)
+
 
 @app.route("/student-search")
 def get_student_form():

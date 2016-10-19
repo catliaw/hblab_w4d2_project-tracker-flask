@@ -12,7 +12,7 @@
   <h3>Project Grades:</h3>
   <ul>
     {% for row in rows %}
-    <li>{{ row[0] }} : {{ row[1] }}</li>
+    <li><a href="/project?title={{ row[0] }}">{{ row[0] }}</a> : {{ row[1] }}</li>
     {% endfor %}
   </ul>
   {% endif %}
