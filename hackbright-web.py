@@ -5,6 +5,18 @@ import hackbright
 app = Flask(__name__)
 
 
+@app.route("/")
+def homepage():
+    """Show homepage with links to projects and students (github username)."""
+
+    student_rows = hackbright.get_all_students()
+    project_rows = hackbright.get_all_projects()
+
+    return render_template("homepage.html",
+                            student_rows=student_rows,
+                            project_rows=project_rows)
+
+
 @app.route("/student")
 def get_student():
     """Show information about a student."""
@@ -19,17 +31,20 @@ def get_student():
                             github=github,
                             rows = rows)
 
+
 @app.route("/project")
 def find_project():
     """ Show information about a project"""
 
     title = request.args.get("title")
     project_title, description, max_grade = hackbright.get_project_by_title(title)
+    rows = hackbright.get_grades_by_title(title)
 
     return render_template("project_info.html",
                             project_title=project_title,
                             description=description,
-                            max_grade=max_grade)
+                            max_grade=max_grade,
+                            rows=rows)
 
 
 @app.route("/student-search")

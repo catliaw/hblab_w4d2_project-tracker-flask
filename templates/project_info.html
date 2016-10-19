@@ -10,5 +10,14 @@
 
   <p>Max Grade: {{ max_grade }}</p>
 
+  {% if rows %}
+  <h3>Student Grades:</h3>
+  <ul>
+    {% for row in rows %}
+    <li><a href="/student?github={{ row[0] }}">{{ row[0] }}</a> : {{ row[1] }}</li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+
 </body>
 </html>

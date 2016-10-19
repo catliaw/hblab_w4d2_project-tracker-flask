@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+<head>
+  <title>Homepage</title>
+</head>
+<body>
+  <h1>Welcome!</h1>
+
+  {% if project_rows %}
+  <h3>Projects:</h3>
+  <ul>
+    {% for row in project_rows %}
+    <li><a href="/project?title={{ row[0] }}">{{ row[0] }}</a></li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+
+  {% if student_rows %}
+  <h3>Students:</h3>
+  <ul>
+    {% for row in student_rows %}
+    <li><a href="/student?github={{ row[2] }}">{{ row[0] }} {{ row[1] }}</a></li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+
+</body>
+</html>
